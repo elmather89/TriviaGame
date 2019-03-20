@@ -1,0 +1,32 @@
+body {
+    background-color: #7AFAE3;
+}
+
+.wrapper {
+    margin: 0 auto;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    padding: 20px;
+    margin: 0 0 20px 0;
+    font-family: 'Baumans', cursive;
+    font-size: 60px;
+    color: #BDABE5;
+    background-color: #EA5C5A;
+}
+
+.main-div {
+    background-color: #BDABE5;
+    padding: 20px;
+}
+
+.start-btn {
+    background-color: #EA5C5A;
+    height: 50px;
+    width: 200px;
+    padding: 10px;
+    margin: 20px auto;
+    text-align: center;
+}
