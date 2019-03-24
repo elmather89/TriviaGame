@@ -20,27 +20,27 @@ $(document).ready(function () {
         question: "What ingredient in milk is eventually devoured by bacteria, causing the sour taste?",
         answers: ["lectin", "lactose", "butter"],
         correctAnswer: "lactose",
-        image: "../assets/images/milk.gif"
+        image: ("../TriviaGame/assets/images/milk.gif")
     }, {
         question: "What is the 'groundnut' better known as?",
         answers: ["acorn", "cashew", "peanut"],
         correctAnswer: "peanut",
-        image: "../assets/images/peanut.gif"
+        image: ("../TriviaGame/assets/images/peanut.gif")
     }, {
         question: "What was the first frozen vegetable besides spinach?",
         answers: ["carrots", "peas", "corn"],
         correctAnswer: "peas",
-        image: "../assets/images/peas.gif"
+        image: ("../TriviaGame/assets/images/peas.gif")
     }, {
         question: "What Indian dish is also the national dish of England?",
         answers: ["Saag Paneer", "Baingan Bharta", "Chicken Tikka Masala"],
         correctAnswer: "Chicken Tikka Masala",
-        image: "../assets/images/tikka.gif"
+        image: ("../TriviaGame/assets/images/tikka.gif")
     }, {
         question: "Who invented Coca-Cola?",
         answers: ["Bernie Sanders", "John Pemberton", "Warren Buffet"],
         correctAnswer: "John Pemberton",
-        image: "../assets/images/cola.gif"
+        image: ("../TriviaGame/assets/images/cola.gif")
     }];
 
     // game object with properties =================================================
@@ -57,7 +57,6 @@ $(document).ready(function () {
             if (game.counter <= 0) {
                 game.timeUp();
             }
-            console.log(game.countdown);
         },
         loadQuestion: function () {
             timer = setInterval(game.countdown, 1000);
@@ -68,7 +67,6 @@ $(document).ready(function () {
                 $("#strt-btn-apnd").append('<button class="answer-button" id="button-' + i + '" data-name="' + questions[game.currentQuestion].answers[i] + '" > ' + questions[game.currentQuestion].answers[i] + '</button>');
                 $(".answer-button").addClass("start");
             }
-            console.log(game.loadQuestion);
         },
         nextQuestion: function () {
             // want to reset the timer for each question
@@ -86,10 +84,10 @@ $(document).ready(function () {
             $(".main-div").append(questions[game.currentQuestion].correctAnswer);
 
             if (game.currentQuestion == questions.length - 1) {
-                setTimeout(game.results, 1 * 1000);
+                setTimeout(game.results, 3 * 1000);
             }
             else {
-                setTimeout(game.nextQuestion, 1 * 1000);
+                setTimeout(game.nextQuestion, 3 * 1000);
             }
         },
         results: function () {
@@ -104,8 +102,9 @@ $(document).ready(function () {
         clicked: function (e) { 
             clearInterval(timer);
             if ($(e.target).data("name") == questions[game.currentQuestion].correctAnswer) {
-                $(".answer-rsp").html("<h2>Correct!</h2>");
-                $(".answer-rsp").append($(e.target).data("image"))
+                // $(".answer-rsp").html("<h2>Correct!</h2>");
+                $(".answer-rsp").html("<img src=" + questions[game.currentQuestion].image + " width='400px'>");
+
                 game.answeredCorrect();
             }
             else {
@@ -117,10 +116,10 @@ $(document).ready(function () {
             game.correct++;
 
             if (game.currentQuestion == questions.length - 1) {
-                setTimeout(game.results, 1 * 1000);
+                setTimeout(game.results, 3 * 1000);
             }
             else {
-                setTimeout(game.nextQuestion, 1 * 1000);
+                setTimeout(game.nextQuestion, 3 * 1000);
             }
         },
         answeredIncorrect: function () {
@@ -129,10 +128,10 @@ $(document).ready(function () {
             $(".strt-btn-apnd").html("<h2>Try Again!</h2>");
             
             if (game.currentQuestion == questions.length - 1) {
-                setTimeout(game.results, 1 * 1000);
+                setTimeout(game.results, 3 * 1000);
             }
             else {
-                setTimeout(game.nextQuestion, 1 * 1000);
+                setTimeout(game.nextQuestion, 3 * 1000);
             }
         },
         reset: function () {
