@@ -1,62 +1,78 @@
 $(document).ready(function () {
 
-    $("#start").on("click", function() {
+    $(document).on("click", "#start", function () {
         $("#start").remove();
         $(".main-div").addClass("h2");
 
         game.loadQuestion();
-
     })
 
-    $(document).on("click", ".answer-button", function(e) {
+    // $("#start").on("click", function() {
+    //     $("#start").remove();
+    //     $(".main-div").addClass("h2");
+
+    //     game.loadQuestion();
+    // })
+
+    $(document).on("click", ".answer-button", function (e) {
         game.clicked(e);
     })
 
-    $(".resetButton").on("click", function() {
-        game.loadQuestion();
+    $(document).on("click", "#resetButton", function () {
+        game.reset();
     })
+
     // question variables ==============================================
     var questions = [{
         question: "What ingredient in milk is eventually devoured by bacteria, causing the sour taste?",
-        answers: ["lectin", "lactose", "butter"],
-        correctAnswer: "lactose",
-        image: ("../TriviaGame/assets/images/milk.gif")
-    }, {
+        answers: ["Lactose", "Legumes", "Butter"],
+        correctAnswer: "Lactose",
+        image: ("../TriviaGame/assets/images/milk.gif"),
+        surprise: ("../TriviaGame/assets/images/surprise.gif")
+    },
+    {
         question: "What is the 'groundnut' better known as?",
-        answers: ["acorn", "cashew", "peanut"],
-        correctAnswer: "peanut",
-        image: ("../TriviaGame/assets/images/peanut.gif")
+        answers: ["Acorn", "Cashew", "Peanut"],
+        correctAnswer: "Peanut",
+        image: ("../TriviaGame/assets/images/peanut.gif"),
+        surprise: ("../TriviaGame/assets/images/surprise.gif")
     }, {
         question: "What was the first frozen vegetable besides spinach?",
-        answers: ["carrots", "peas", "corn"],
-        correctAnswer: "peas",
-        image: ("../TriviaGame/assets/images/peas.gif")
+        answers: ["Carrots", "Peas", "Corn"],
+        correctAnswer: "Peas",
+        image: ("../TriviaGame/assets/images/peas.gif"),
+        surprise: ("../TriviaGame/assets/images/surprise.gif")
     }, {
         question: "What Indian dish is also the national dish of England?",
         answers: ["Saag Paneer", "Baingan Bharta", "Chicken Tikka Masala"],
         correctAnswer: "Chicken Tikka Masala",
-        image: ("../TriviaGame/assets/images/tikka.gif")
+        image: ("../TriviaGame/assets/images/tikka.gif"),
+        surprise: ("../TriviaGame/assets/images/surprise.gif")
     }, {
         question: "Who invented Coca-Cola?",
         answers: ["Bernie Sanders", "John Pemberton", "Warren Buffet"],
         correctAnswer: "John Pemberton",
-        image: ("../TriviaGame/assets/images/cola.gif")
+        image: ("../TriviaGame/assets/images/cola.gif"),
+        surprise: ("../TriviaGame/assets/images/surprise.gif")
     }];
 
     // game object with properties =================================================
     var game = {
         questions: questions,
         currentQuestion: 0,
-        counter: 30,
+        counter: 25,
         correct: 0,
         incorrect: 0,
         unanswered: 0,
+        surprise: ("../TriviaGame/assets/images/surprise.gif"),
         countdown: function () {
             game.counter--;
-            $(".count-dwn").text(game.counter);
-            if (game.counter <= 0) {
+            $(".count-dwn").text(game.counter + " seconds");
+
+            if (game.counter == 0) {
                 game.timeUp();
             }
+            console.log(game.counter);
         },
         loadQuestion: function () {
             timer = setInterval(game.countdown, 1000);
@@ -70,7 +86,7 @@ $(document).ready(function () {
         },
         nextQuestion: function () {
             // want to reset the timer for each question
-            game.counter = 30;
+            game.counter = 25;
             $("#strt-btn-apnd").html(game.counter);
             game.currentQuestion++;
             $(".answer-rsp").empty();
@@ -80,34 +96,52 @@ $(document).ready(function () {
             // timer stops
             clearInterval(timer);
             game.unanswered++;
-            $(".strt-btn-apnd").html("<h2>You ran out of time!");
+            $("#strt-btn-apnd").html("<h2>You ran out of time!</h2>");
             $(".main-div").append(questions[game.currentQuestion].correctAnswer);
 
             if (game.currentQuestion == questions.length - 1) {
-                setTimeout(game.results, 3 * 1000);
+                setTimeout(game.results, 3000);
             }
             else {
-                setTimeout(game.nextQuestion, 3 * 1000);
+                setTimeout(game.nextQuestion, 3000);
             }
         },
         results: function () {
             clearInterval(timer);
-            $(".main-div").html("You've answered all the questions! ");
+            $(".main-div").html("<h1>You've answered all the questions!</h1>");
             $(".main-div").append("<h3>Correct: " + game.correct + "</h3>");
             $(".main-div").append("<h3>Incorrect: " + game.incorrect + "</h3>");
             $(".main-div").append("<h3>Unanswered: " + game.unanswered + "</h3>");
+            $(".main-div").append("<button id='resetButton'>Reset the game</button>");
 
-            reset();
+            // $("#strt-btn-apnd").empty();
+            $(".count-dwn").empty();
+
+            if (game.correct > game.incorrect && game.correct > game.unanswered) {
+                clearInterval(timer);
+                console.log("Winner");
+                $(".main-div").append("<h3>Nice Work!</h3>");
+                $(".gif").append("<img src='../TriviaGame/assets/images/surprise.gif'></img>");
+            }
+            else {
+                clearInterval(timer);
+                console.log("Loser");
+                $(".main-div").append("<h3>You gave it your best!</h3>");
+                $(".gif").append("<img src='../TriviaGame/assets/images/niceTry.gif'></img>");
+            }
         },
-        clicked: function (e) { 
+        clicked: function (e) {
             clearInterval(timer);
             if ($(e.target).data("name") == questions[game.currentQuestion].correctAnswer) {
                 // $(".answer-rsp").html("<h2>Correct!</h2>");
-                $(".answer-rsp").html("<img src=" + questions[game.currentQuestion].image + " width='400px'>");
+
+                // shows gif on correct answer click
+                $(".main-div").append("<img src=" + questions[game.currentQuestion].image + " width='400px'>");
 
                 game.answeredCorrect();
             }
             else {
+                $(".main-div").append("Nope. The answer is " + questions[game.currentQuestion].correctAnswer + ".");
                 game.answeredIncorrect();
             }
         },
@@ -116,28 +150,38 @@ $(document).ready(function () {
             game.correct++;
 
             if (game.currentQuestion == questions.length - 1) {
-                setTimeout(game.results, 3 * 1000);
+                setTimeout(game.results, 3000);
             }
             else {
-                setTimeout(game.nextQuestion, 3 * 1000);
+                setTimeout(game.nextQuestion, 3000);
             }
         },
         answeredIncorrect: function () {
             clearInterval(timer);
             game.incorrect++;
-            $(".strt-btn-apnd").html("<h2>Try Again!</h2>");
-            
+            // $(".remove").html("<h2>Try Again!</h2>");
+            // setTimeout (function () {
+            //     $(".remove").remove();
+            // }, 1 * 500);
+
             if (game.currentQuestion == questions.length - 1) {
-                setTimeout(game.results, 3 * 1000);
+                setTimeout(game.results, 3000);
             }
             else {
-                setTimeout(game.nextQuestion, 3 * 1000);
+                setTimeout(game.nextQuestion, 3000);
             }
         },
         reset: function () {
-            var resetButton = $("<button>");
-            resetButton.text("Reset the Game");
-            resetButton.addClass("start");
+            clearInterval();
+            game.currentQuestion = 0;
+            game.counter = 30;
+            game.correct = 0;
+            game.incorrect = 0;
+            game.unanswered = 0;
+
+            $(".gif").empty();
+
+            game.loadQuestion();
         }
     }
 
@@ -165,7 +209,7 @@ $(document).ready(function () {
     // // start timer ==================================================
     // function startClock() {
     //     if (!clockRunning) {
-    //         intervalId = setInterval(count, 1000);
+    //         intervalId = setInterval(count, 500);
     //         clockRunning = true;
     //     }
     // }
@@ -204,5 +248,6 @@ $(document).ready(function () {
     //     return minutes + ":" + seconds;
     // }
 
+  
     // // end of document below
 });

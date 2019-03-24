@@ -2,7 +2,7 @@ body {
     /* background-color: #7AFAE3; */
     background-image: url("../images/background.jpg");
     /* background-size: contain; */
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Carter One', regular;
     font-size: 20px;
     color: antiquewhite;
 }
@@ -27,17 +27,16 @@ h1 {
     border-radius: 5px;
 }
 
-.h2 {
+h2 {
     color: antiquewhite;
-    size: 24px;
-    font-family: Arial, Helvetica, sans-serif;
+    size: 12px;
+    font-family: Arial, Helvetica, sans-serif, italic;
 }
 
 .main-div {
     background-color: rgb(190, 20, 48);
     padding: 20px;
     border-radius: 5px;
-    min-height: 200px;
     text-align: center;
     margin: 20px 0 20px 0;
     border: rgb(63, 70, 55) solid 5px;
@@ -77,4 +76,39 @@ h1 {
     text-align: center;
     border: rgb(63, 70, 55) solid 5px;
     min-height: 35px;
+    font-size: 24px;
+}
+
+#resetButton {
+    background-color: rgb(190, 20, 48);
+    height: 75px;
+    width: 250px;
+    margin: 20px auto;
+    text-align: center;
+    border-radius: 5px;
+    border-color: rgb(63, 70, 55);
+    border-width: 5px;
+    color: rgb(224, 206, 42);
+    font-family: 'Carter One', regular;
+    font-size: 24px;
+}
+
+.surprise {
+    background-image: url("../images/burger.jpg");
+    background-size: 400px;
+    background-repeat: no-repeat;
+    float: left;
+    overflow: hidden;
+}
+
+.loser {
+    background-image: url("../images/burgerLg.gif");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    float: left;
+}
+
+.gif {
+    text-align: center;
+    margin-bottom: 20px;
 }
