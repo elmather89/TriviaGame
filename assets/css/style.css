@@ -1,5 +1,10 @@
 body {
-    background-color: #7AFAE3;
+    /* background-color: #7AFAE3; */
+    background-image: url("../images/background.jpg");
+    /* background-size: contain; */
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color: antiquewhite;
 }
 
 .wrapper {
@@ -10,23 +15,62 @@ body {
 h1 {
     text-align: center;
     padding: 20px;
-    margin: 0 0 20px 0;
-    font-family: 'Baumans', cursive;
+    margin: 0 auto;
+    font-family: 'Carter One', regular;
     font-size: 60px;
-    color: #BDABE5;
-    background-color: #EA5C5A;
+    color: rgb(224, 206, 42);
+    background-color: rgb(63, 70, 55);
+    border-radius: 5px;
+}
+
+.h2 {
+    color: antiquewhite;
+    size: 24px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .main-div {
-    background-color: #BDABE5;
+    background-color: rgb(190, 20, 48);
     padding: 20px;
+    border-radius: 5px;
+    min-height: 200px;
+    text-align: center;
+    margin: 20px 0 20px 0;
+    border: rgb(63, 70, 55) solid 5px;
 }
 
-.start-btn {
-    background-color: #EA5C5A;
-    height: 50px;
-    width: 200px;
-    padding: 10px;
+#start {
+    background-color: rgb(190, 20, 48);
+    height: 75px;
+    width: 250px;
     margin: 20px auto;
     text-align: center;
+    border-radius: 5px;
+    border-color: rgb(63, 70, 55);
+    border-width: 5px;
+    color: rgb(224, 206, 42);
+    font-family: 'Carter One', regular;
+    font-size: 24px;
+}
+
+.start {
+    background-color: rgb(190, 20, 48);
+    height: 75px;
+    width: 250px;
+    margin: 20px auto;
+    text-align: center;
+    border-radius: 5px;
+    border-color: rgb(63, 70, 55);
+    border-width: 5px;
+    color: rgb(224, 206, 42);
+    font-family: 'Carter One', regular;
+    font-size: 24px;
+}
+
+.count-dwn {
+    background-color: rgb(190, 20, 48);
+    border-radius: 5px;
+    text-align: center;
+    border: rgb(63, 70, 55) solid 5px;
+    min-height: 35px;
 }
