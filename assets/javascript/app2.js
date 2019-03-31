@@ -1,152 +1,111 @@
-$(document).ready(function () {
+$(document).ready(function() {
+  // new question variables ===============================
+  var q1 = ["What ingredient in milk is eventually devoured by bacteria, causing the sour taste?"];
+  var a1 = ["Lactose", "Legumes", "Butter"];
 
-  // global variables ===============================
-  var q1 = ["What ingredient in milk is eventually devoured by bacteria, causing the sour taste?", "Lactose", "Legumes", "Butter"];
-  var q2 = ["What is the 'groundnut' better known as?", "Acorn", "Cashew", "Peanut"];
-  var q3 = ["What was the first frozen vegetable besides spinach?", "Carrots", "Peas", "Corn"];
-  var q4 = ["What Indian dish is also the national dish of England?", "Saag Paneer", "Baingan Bharta", "Chicken Tikka Masala"]
-  var q5 = ["Who invented Coca-Cola?", "Bernie Sanders", "John Pemberton", "Warren Buffet"];
-  var allQuestions = [q1, q2, q3, q4, q5];
+  var q2 = ["What is the 'groundnut' better known as?"];
+  var a2 = [ "Acorn", "Cashew", "Peanut"];
+  
+  var q3 = ["What was the first frozen vegetable besides spinach?"];
+  var a3 = ["Carrots", "Peas", "Corn"];
 
-  var count = 0;
-  var timer = 2;
-  var intervalId;
+  var q4 = ["What Indian dish is also the national dish of England?"];
+  var a4 = ["Saag Paneer", "Baingan Bharta", "Chicken Tikka Masala"];
 
-  var questionTracker = 0;
-  var correctA = 0;
-  var wrongA = 0;
-  var unAnswered = 0;
+  var q5 = ["Who invented Coca-Cola?"];
+  var a5 = ["Bernie Sanders", "John Pemberton", "Warren Buffet"];
 
-  startBtn();
-  // generate a start button
-  function startBtn() {
-    var startButton = $("<button>");
-    startButton.addClass("start");
-    startButton.text("START");
-    $("#strt-btn-apnd").append(startButton);
-  };
+  // end ==================================================
 
-  // on start button click,
-  // remove start button,
-  // load first question,
-  // start the timer countdown
-  $(".start").on("click", function () {
-    $(".start").remove();
-    loadQuestion();
-    startTimer();
-  });
+//     // question variables
+// var questions = [{
+//     question: "What ingredient in milk is eventually devoured by bacteria, causing the sour taste?",
+//     answers: ["Lactose", "Legumes", "Butter"],
+//     correctAnswer: "Lactose",
+//     image: ("../TriviaGame/assets/images/milk.gif"),
+//     surprise: ("../TriviaGame/assets/images/surprise.gif")
+// }, {
+//     question: "What is the 'groundnut' better known as?",
+//     answers: ["Acorn", "Cashew", "Peanut"],
+//     correctAnswer: "Peanut",
+//     image: ("../TriviaGame/assets/images/peanut.gif"),
+//     surprise: ("../TriviaGame/assets/images/surprise.gif")
+// }, {
+//     question: "What was the first frozen vegetable besides spinach?",
+//     answers: ["Carrots", "Peas", "Corn"],
+//     correctAnswer: "Peas",
+//     image: ("../TriviaGame/assets/images/peas.gif"),
+//     surprise: ("../TriviaGame/assets/images/surprise.gif")
+// }, {
+//     question: "What Indian dish is also the national dish of England?",
+//     answers: ["Saag Paneer", "Baingan Bharta", "Chicken Tikka Masala"],
+//     correctAnswer: "Chicken Tikka Masala",
+//     image: ("../TriviaGame/assets/images/tikka.gif"),
+//     surprise: ("../TriviaGame/assets/images/surprise.gif")
+// }, {
+//     question: "Who invented Coca-Cola?",
+//     answers: ["Bernie Sanders", "John Pemberton", "Warren Buffet"],
+//     correctAnswer: "John Pemberton",
+//     image: ("../TriviaGame/assets/images/cola.gif"),
+//     surprise: ("../TriviaGame/assets/images/surprise.gif")
+// }];
 
-  function loadQuestion() {
-    $(".main-div").empty();
+// timer variables
+// var count = 0;
+var timer = 2;
+var intervalId;
 
-    // // question
-    // var qDiv = $("<div>");
-    // qDiv.text(allQuestions[questionTracker]);
-    // $(".main-div").append(qDiv);
+// score variables
+var correctA = 0;
+var wrongA = 0;
+var unAnswered = 0;
 
-    // // answer buttons
-    // for (var i = 1; i < q1.length; i++) {
-    //   var aDiv = $("<button>");
-    //   aDiv.text(q1[i]);
-    //   aDiv.addClass("q-btns");
-    //   $(".main-div").append(aDiv);
+// index tracker
+var qTracker = 0;
+var aTracker = 0;
 
-      // console.log(allQuestions[0][0]);
+// ============================================================
 
-      // questions for loop
-      for (var i = 0; i < allQuestions.length; i++) {
-        if (allQuestions[i].slice(0, 1)) {
+startBtn();
+// generate a start button
+function startBtn() {
+var startButton = $("<button>");
+startButton.addClass("start");
+startButton.text("START");
+$("#strt-btn-apnd").append(startButton);
+};
 
-          console.log(allQuestions[i].slice(0, 1));
-        }
-      }
-    
-    };
+// start button on click event
+$(".start").on("click", function () {
+  $(".start").remove();
+  firstQuestion();
+  // startTimer();
+});
 
+function firstQuestion() {
+  $(".main-div").empty();
 
-  // once timer hits 0,
-  // function to check for correctA, wrongA, or unAnswered and tally
-  // go to next question
-  function startTimer() {
-    clearInterval(intervalId);
-    intervalId = setInterval(decrement, 1000);
-  };
+  // question
+  $(".main-div").text(q1);
 
-  function decrement() {
-    timer--;
-    $(".count-dwn").text(timer);
+  // answers array
+  for (var i = 0; i < a1.length; i++) {
+      var answerBtns = $("<button>");
+      answerBtns.addClass("start");
+      answerBtns.text(a1[i]);
+      $(".main-div").append(answerBtns);    
+  }
 
-    // console.log(decrement);
+  // setTimeout(nextQuestion, 1000 * 2);
+}; 
 
-    if (timer === 0) {
-      // secondQuestion();
-      resetTimer();
-    }
-  };
+function nextQuestion() {
+  $(".main-div").empty();
+  qTracker++;
 
-  function resetTimer() {
-    clearInterval(intervalId);
-    timer = 2;
-  };
+  $(".main-div").text(q2);
 
-  // // load the 2nd question
-  // function secondQuestion() {
-  //   startTimer();
-  //   count++;
-  //   $(".main-div").empty();
+  setTimeout(nextQuestion, 1000 * 2);
+};
 
-  //   // question
-  //   var qDiv = $("<div>");
-  //   qDiv.text(allQuestions[1]);
-  //   $(".main-div").append(qDiv);
-
-  //   for (var j = 1; j < q2.length; j++) {
-  //     // answer buttons
-  //     var aDiv = $("<button>");
-  //     aDiv.text(q2[j]);
-  //     aDiv.addClass("q-btns");
-  //     $(".main-div").append(aDiv);
-  //   };
-  //   thirdQuestion();
-  // };
-
-  // function thirdQuestion() {
-  //   startTimer();
-  //   count++;
-  //   $(".main-div").empty();
-
-  //   var qDiv = $("<div>");
-  //   qDiv.text(allQuestions[2]);
-  //   $(".main-div").append(qDiv);
-
-  //   for (var k = 1; k < q3.length; k++) {
-  //     var aDiv = $("<button>");
-  //     aDiv.text(q3[k]);
-  //     aDiv.addClass("q-btns");
-  //     $(".main-div").append(aDiv);
-  //   };
-  //   fourthQuestion();
-  // };
-
-  // function fourthQuestion() {
-  //   startTimer();
-  //   count++;
-  //   $(".main-div").empty();
-
-  //   var qDiv = $("<div>");
-  //   qDiv.text(allQuestions[3]);
-  //   $(".main-div").append(qDiv);
-
-  //   for (var l = 1; l < q4.length; l++) {
-  //     var aDiv = $("<button>");
-  //     aDiv.text(q4[l]);
-  //     aDiv.addClass("q-btns");
-  //     $(".main-div").append(aDiv);
-  //   };
-  //   console.log(fourthQuestion);
-  // };
-
-
-  // on answer button click, check if right or wrong
-
-}); // everything inside this
+}) // end
