@@ -6,7 +6,7 @@ $(document).ready(function () {
   var q3 = ["What was the first frozen vegetable besides spinach?", "Carrots", "Peas", "Corn"];
   var q4 = ["What Indian dish is also the national dish of England?", "Saag Paneer", "Baingan Bharta", "Chicken Tikka Masala"]
   var q5 = ["Who invented Coca-Cola?", "Bernie Sanders", "John Pemberton", "Warren Buffet"];
-  var allQuestions = [q1[0], q2[0], q3[0], q4[0], q5[0]];
+  var allQuestions = [q1, q2, q3, q4, q5];
 
   var count = 0;
   var timer = 2;
@@ -41,7 +41,7 @@ $(document).ready(function () {
 
     // question
     var qDiv = $("<div>");
-    qDiv.text(allQuestions[0]); // if this breaks it, replace with allQuestions[0][0] again
+    qDiv.text(allQuestions[questionTracker]);
     $(".main-div").append(qDiv);
 
     // answer buttons
