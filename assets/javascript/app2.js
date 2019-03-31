@@ -119,23 +119,23 @@ $(document).ready(function () {
   //   fourthQuestion();
   // };
 
-  function fourthQuestion() {
-    startTimer();
-    count++;
-    $(".main-div").empty();
+  // function fourthQuestion() {
+  //   startTimer();
+  //   count++;
+  //   $(".main-div").empty();
 
-    var qDiv = $("<div>");
-    qDiv.text(allQuestions[3]);
-    $(".main-div").append(qDiv);
+  //   var qDiv = $("<div>");
+  //   qDiv.text(allQuestions[3]);
+  //   $(".main-div").append(qDiv);
 
-    for (var l = 1; l < q4.length; l++) {
-      var aDiv = $("<button>");
-      aDiv.text(q4[l]);
-      aDiv.addClass("q-btns");
-      $(".main-div").append(aDiv);
-    };
-    console.log(fourthQuestion);
-  };
+  //   for (var l = 1; l < q4.length; l++) {
+  //     var aDiv = $("<button>");
+  //     aDiv.text(q4[l]);
+  //     aDiv.addClass("q-btns");
+  //     $(".main-div").append(aDiv);
+  //   };
+  //   console.log(fourthQuestion);
+  // };
 
 
   // on answer button click, check if right or wrong
