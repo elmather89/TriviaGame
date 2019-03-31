@@ -39,21 +39,30 @@ $(document).ready(function () {
   function loadQuestion() {
     $(".main-div").empty();
 
-    // question
-    var qDiv = $("<div>");
-    qDiv.text(allQuestions[questionTracker]);
-    $(".main-div").append(qDiv);
+    // // question
+    // var qDiv = $("<div>");
+    // qDiv.text(allQuestions[questionTracker]);
+    // $(".main-div").append(qDiv);
 
-    // answer buttons
-    for (var i = 1; i < q1.length; i++) {
-      var aDiv = $("<button>");
-      aDiv.text(q1[i]);
-      aDiv.addClass("q-btns");
-      $(".main-div").append(aDiv);
+    // // answer buttons
+    // for (var i = 1; i < q1.length; i++) {
+    //   var aDiv = $("<button>");
+    //   aDiv.text(q1[i]);
+    //   aDiv.addClass("q-btns");
+    //   $(".main-div").append(aDiv);
 
       // console.log(allQuestions[0][0]);
+
+      // questions for loop
+      for (var i = 0; i < allQuestions.length; i++) {
+        if (allQuestions[i].slice(0, 1)) {
+
+          console.log(allQuestions[i].slice(0, 1));
+        }
+      }
+    
     };
-  };
+
 
   // once timer hits 0,
   // function to check for correctA, wrongA, or unAnswered and tally
@@ -80,26 +89,26 @@ $(document).ready(function () {
     timer = 2;
   };
 
-  // load the 2nd question
-  function secondQuestion() {
-    startTimer();
-    count++;
-    $(".main-div").empty();
+  // // load the 2nd question
+  // function secondQuestion() {
+  //   startTimer();
+  //   count++;
+  //   $(".main-div").empty();
 
-    // question
-    var qDiv = $("<div>");
-    qDiv.text(allQuestions[1]);
-    $(".main-div").append(qDiv);
+  //   // question
+  //   var qDiv = $("<div>");
+  //   qDiv.text(allQuestions[1]);
+  //   $(".main-div").append(qDiv);
 
-    for (var j = 1; j < q2.length; j++) {
-      // answer buttons
-      var aDiv = $("<button>");
-      aDiv.text(q2[j]);
-      aDiv.addClass("q-btns");
-      $(".main-div").append(aDiv);
-    };
-    thirdQuestion();
-  };
+  //   for (var j = 1; j < q2.length; j++) {
+  //     // answer buttons
+  //     var aDiv = $("<button>");
+  //     aDiv.text(q2[j]);
+  //     aDiv.addClass("q-btns");
+  //     $(".main-div").append(aDiv);
+  //   };
+  //   thirdQuestion();
+  // };
 
   // function thirdQuestion() {
   //   startTimer();
@@ -140,4 +149,4 @@ $(document).ready(function () {
 
   // on answer button click, check if right or wrong
 
-}) // everything inside this
+}); // everything inside this
