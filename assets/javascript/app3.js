@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
     // question variables
     var questions = [{
@@ -32,79 +32,95 @@ $(document).ready(function() {
         image: ("../TriviaGame/assets/images/cola.gif"),
         surprise: ("../TriviaGame/assets/images/surprise.gif")
     }];
-    
+
     // timer variables
     var count = 0;
     var timer = 2;
     var intervalId;
-    
+
     // score variables
     var correctA = 0;
     var wrongA = 0;
     var unAnswered = 0;
-    
+
     // index tracker
     var qTracker = 0;
     var aTracker = 0;
-    
+    var corrTracker = 0;
+
     // ============================================================
-    
+
     startBtn();
     // generate a start button
     function startBtn() {
-      var startButton = $("<button>");
-      startButton.addClass("start");
-      startButton.text("START");
-      $("#strt-btn-apnd").append(startButton);
+        var startButton = $("<button>");
+        startButton.addClass("start");
+        startButton.text("START");
+        $("#strt-btn-apnd").append(startButton);
     };
-    
+
     // start button on click event
     $(".start").on("click", function () {
         $(".start").remove();
         firstQuestion();
         // startTimer();
-      });
-    
+    });
+
     function firstQuestion() {
         $(".main-div").empty();
-    
+
         // question
         $(".main-div").text(questions[qTracker].question);
 
         // answers
         for (var i = 0; i < questions[qTracker].answers.length; i++) {
             var answerBtns = $("<button>");
-            answerBtns.addClass("start");
-            answerBtns.text(questions[qTracker].answers);
+            answerBtns.addClass("q-btns");
+            answerBtns.text(questions[qTracker].answers[i]);
+            answerBtns.attr("data-corrAnswer", questions[qTracker].answers[i]);
+
             $(".main-div").append(answerBtns);
         }
-    
-        setTimeout(nextQuestion, 1000 * 2);
+
+        // timer
+        setTimeout(nextQuestion, 1000 * 200);
         if (timer === questions.length) {
             qTracker = 0;
         }
-    }; 
-    
+    };
+
     function nextQuestion() {
         $(".main-div").empty();
         qTracker++;
         aTracker++;
-    
+
         // question
         $(".main-div").text(questions[qTracker].question);
 
         // answers 
         for (var i = 0; i < questions[aTracker].answers.length; i++) {
             var answerBtns = $("<button>");
-            answerBtns.addClass("start");
-            answerBtns.text(questions[aTracker].answers);
+            answerBtns.addClass("q-btns");
+            answerBtns.text(questions[aTracker].answers[i]);
+            answerBtns.attr("data-corrAnswer", questions[qTracker].answers[i]);
+
             $(".main-div").append(answerBtns);
         }
 
+        // timer
         setTimeout(nextQuestion, 1000 * 2);
         if (timer === questions.length) {
             qTracker = 0;
         }
     };
-    
-    }) // end
+
+    // on click event for buttons, tally scores
+    $(".q-btns").on("click", function() {
+        var userAnswer = ($(this).attr("data-corrAnswer"));
+        if ($(".q-btns").children().length === 0) {
+            console.log(userAnswer);
+        }
+    })
+
+
+}) // end
