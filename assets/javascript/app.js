@@ -185,68 +185,68 @@ $(document).ready(function () {
         }
     }
 
-    // // Press start switches timer on ==================================
-    // $(".start-btn").click(function () {
-    //     startClock();
-    // });
+    // Press start switches timer on ==================================
+    $(".start-btn").click(function () {
+        startClock();
+    });
 
-    // // timer variables =================================================
-    // var intervalId;
-    // var clockRunning = false;
-    // var time = 02;
-    // var lap = 1;
-    // var countDown;
+    // timer variables =================================================
+    var intervalId;
+    var clockRunning = false;
+    var time = 02;
+    var lap = 1;
+    var countDown;
 
 
-    // // reset function =================================================
-    // function reset() {
-    //     time = 0;
-    //     lap = 1;
-    //     // Change the ".start-btn" div to "00:00."
-    //     $(".start-btn").text("00:00");
-    // }
+    // reset function =================================================
+    function reset() {
+        time = 0;
+        lap = 1;
+        // Change the ".start-btn" div to "00:00."
+        $(".start-btn").text("00:00");
+    }
 
-    // // start timer ==================================================
-    // function startClock() {
-    //     if (!clockRunning) {
-    //         intervalId = setInterval(count, 500);
-    //         clockRunning = true;
-    //     }
-    // }
+    // start timer ==================================================
+    function startClock() {
+        if (!clockRunning) {
+            intervalId = setInterval(count, 500);
+            clockRunning = true;
+        }
+    }
 
-    // // showTime funciton =============================================
-    // function showTime() {
-    //     var converted = timeConverter(time);
-    //     $(".start-btn").append(lap + converted);
-    //     lap++;
-    // }
+    // showTime funciton =============================================
+    function showTime() {
+        var converted = timeConverter(time);
+        $(".start-btn").append(lap + converted);
+        lap++;
+    }
 
-    // // count function
-    // function count(timer) {
-    //     time--;
-    //     var converted = timeConverter(time);
-    //     $(".start-btn").text(converted);
-    // }
+    // count function
+    function count(timer) {
+        time--;
+        var converted = timeConverter(time);
+        $(".start-btn").text(converted);
+    }
 
-    // // time converter function ==============================================
-    // function timeConverter(t) {
-    //     var minutes = Math.floor(t / 60);
-    //     var seconds = t - (minutes * 60);
+    // time converter function ==============================================
+    function timeConverter(t) {
+        var minutes = Math.floor(t / 60);
+        var seconds = t - (minutes * 60);
 
-    //     if (seconds < 10) {
-    //         seconds = "0" + seconds;
-    //     }
+        if (seconds < 10) {
+            seconds = "0" + seconds;
+        }
 
-    //     if (minutes === 0) {
-    //         minutes == "00";
-    //     }
+        if (minutes === 0) {
+            minutes == "00";
+        }
 
-    //     else if (minutes < 10) {
-    //         minutes = "0" + minutes;
-    //     }
+        else if (minutes < 10) {
+            minutes = "0" + minutes;
+        }
 
-    //     return minutes + ":" + seconds;
-    // }
+        return minutes + ":" + seconds;
+    }
 
   
     // // end of document below

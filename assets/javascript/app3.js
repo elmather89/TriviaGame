@@ -48,6 +48,9 @@ $(document).ready(function () {
     var aTracker = 0;
     var corrTracker = 0;
 
+    // user variables
+    var userInput = [];
+
     // ============================================================
 
     startBtn();
@@ -65,6 +68,18 @@ $(document).ready(function () {
         firstQuestion();
         // startTimer();
     });
+
+    // on click event for buttons, tally scores
+    $(".q-btns").on("click", function () {
+        var userAnswer = $(".q-btns").val().trim();
+        userInput.push(userAnswer);
+        $(".q-btns").val("");
+
+        // if ($(".q-btns").children().length === 0) {
+        //     console.log(userAnswer);
+        // }
+    });
+
 
     function firstQuestion() {
         $(".main-div").empty();
@@ -113,14 +128,5 @@ $(document).ready(function () {
             qTracker = 0;
         }
     };
-
-    // on click event for buttons, tally scores
-    $(".q-btns").on("click", function() {
-        var userAnswer = ($(this).attr("data-corrAnswer"));
-        if ($(".q-btns").children().length === 0) {
-            console.log(userAnswer);
-        }
-    })
-
 
 }) // end
