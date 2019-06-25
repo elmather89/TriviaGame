@@ -1,4 +1,4 @@
-# Food Trivia Game
+# :hamburger: Food Trivia Game :hamburger:
 This game keeps track of your score and displays your stats at the end of the quiz!
 
 ### Built with: 
