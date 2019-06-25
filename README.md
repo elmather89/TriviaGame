@@ -1,3 +1,9 @@
-# TriviaGame
+# Food Trivia Game
+This game keeps track of your score and displays your stats at the end of the quiz!
 
-# See the published site here: https://elmather89.github.io/TriviaGame/
+### Built with: 
+* jQuery
+* HTML
+* CSS
+
+### See the published site here: [Trivia game](https://elmather89.github.io/TriviaGame/)
